@@ -9,6 +9,7 @@ public class Airplane : MonoBehaviour
     private Rigidbody2D physics;
     private Director director;
     private Vector3 initialPosition;
+    private bool shuoldTriggerImpulse;
 
     private void Awake() {
         this.physics = this.GetComponent<Rigidbody2D>();
@@ -23,9 +24,20 @@ public class Airplane : MonoBehaviour
     void Update()
     {
         if(Input.GetButtonDown("Fire1")) {
-            this.physics.velocity = Vector2.zero;
-            this.physics.AddForce(Vector2.up * this.force, ForceMode2D.Impulse);
+            this.shuoldTriggerImpulse = true;
         }
+    }
+
+    private void FixedUpdate() {
+        if (this.shuoldTriggerImpulse) {
+            this.Impulse();
+            this.shuoldTriggerImpulse = false;
+        }
+    }
+
+    private void Impulse() {
+        this.physics.velocity = Vector2.zero;
+        this.physics.AddForce(Vector2.up * this.force, ForceMode2D.Impulse);
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
