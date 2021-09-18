@@ -5,7 +5,7 @@ using UnityEngine;
 public class Carousel : MonoBehaviour
 {
     [SerializeField]
-    private float velocity;
+    private SharedPropertyFloat velocity;
 
     private Vector3 inicialPosition;
     private float scaledImageSize;
@@ -20,7 +20,7 @@ public class Carousel : MonoBehaviour
 
 
     void Update() {
-        float offset = Mathf.Repeat(this.velocity * Time.time, this.scaledImageSize);
+        float offset = Mathf.Repeat(this.velocity.value * Time.time, this.scaledImageSize);
         this.transform.position = this.inicialPosition + Vector3.left * offset;
 
     }
