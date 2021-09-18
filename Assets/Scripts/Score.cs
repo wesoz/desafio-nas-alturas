@@ -7,26 +7,26 @@ public class Score : MonoBehaviour
 {
     [SerializeField]
     private Text scoreText;
-    private int score;
+    public int ScorePoints { get; private set; }
     private AudioSource scoreSound;
 
     private void Awake() {
         this.scoreSound = this.GetComponent<AudioSource>();
     }
     public void AddScore() {
-        this.score++;
-        this.scoreText.text = this.score.ToString();
+        this.ScorePoints++;
+        this.scoreText.text = this.ScorePoints.ToString();
         this.scoreSound.Play();
     }
 
     public void SaveHighscore() {
         int highscore = PlayerPrefs.GetInt("highscore", 0);
-        if (this.score > highscore) {
-            PlayerPrefs.SetInt("highscore", this.score);
+        if (this.ScorePoints > highscore) {
+            PlayerPrefs.SetInt("highscore", this.ScorePoints);
         }
     }
     public void Reset() {
-        this.score = 0;
-        this.scoreText.text = this.score.ToString();
+        this.ScorePoints = 0;
+        this.scoreText.text = this.ScorePoints.ToString();
     }
 }
