@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Airplane : MonoBehaviour
 {
     [SerializeField]
     private float force;
+
+    [SerializeField]
+    private UnityEvent onCollide;
     private Rigidbody2D physics;
     private Director director;
     private Vector3 initialPosition;
@@ -24,9 +28,6 @@ public class Airplane : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1")) {
-            this.shuoldTriggerImpulse = true;
-        }
         this.airplaneAnimation.SetFloat("VelocityY", this.physics.velocity.y);
     }
 
@@ -37,6 +38,10 @@ public class Airplane : MonoBehaviour
         }
     }
 
+    public void DoImpulse() {
+        this.shuoldTriggerImpulse = true;
+    }
+
     private void Impulse() {
         this.physics.velocity = Vector2.zero;
         this.physics.AddForce(Vector2.up * this.force, ForceMode2D.Impulse);
@@ -44,7 +49,7 @@ public class Airplane : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         this.physics.simulated = false;
-        this.director.GameOver();
+        this.onCollide.Invoke();
     }
 
     public void Restart() {

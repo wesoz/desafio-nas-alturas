@@ -19,8 +19,8 @@ public class Carousel : MonoBehaviour
     }
 
 
-    void Update() {
-        float offset = Mathf.Repeat(this.velocity.value * Time.time, this.scaledImageSize);
+    private void Update() {
+        float offset = Mathf.Repeat(this.velocity.value * Time.time, this.scaledImageSize / 2f);
         this.transform.position = this.inicialPosition + Vector3.left * offset;
 
     }
