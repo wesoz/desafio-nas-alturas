@@ -7,7 +7,7 @@ public class Score : MonoBehaviour
 {
     [SerializeField]
     private Text scoreText;
-    private int score = 0;
+    private int score;
     private AudioSource scoreSound;
 
     private void Awake() {
@@ -19,6 +19,12 @@ public class Score : MonoBehaviour
         this.scoreSound.Play();
     }
 
+    public void SaveHighscore() {
+        int highscore = PlayerPrefs.GetInt("highscore", 0);
+        if (this.score > highscore) {
+            PlayerPrefs.SetInt("highscore", this.score);
+        }
+    }
     public void Reset() {
         this.score = 0;
         this.scoreText.text = this.score.ToString();

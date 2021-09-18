@@ -4,22 +4,23 @@ using UnityEngine;
 
 public class Director : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject gameOverImage;
     private Airplane airplane;
     private Score score;
+    private GameOverUI gameOverUI;
 
     private void Start() {
         this.airplane = GameObject.FindObjectOfType<Airplane>();
         this.score = GameObject.FindObjectOfType<Score>();
+        this.gameOverUI = GameObject.FindObjectOfType<GameOverUI>();
     }
     public void GameOver() {
         Time.timeScale = 0;
-        this.gameOverImage.SetActive(true);
+        this.score.SaveHighscore();
+        this.gameOverUI.ShowInterface();
     }
 
     public void RestartGame() {
-        this.gameOverImage.SetActive(false);
+        this.gameOverUI.HideInterface();
         Time.timeScale = 1;
         this.airplane.Restart();
         this.DestroyObstacles();
