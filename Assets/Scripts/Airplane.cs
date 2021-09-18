@@ -10,22 +10,24 @@ public class Airplane : MonoBehaviour
     private Director director;
     private Vector3 initialPosition;
     private bool shuoldTriggerImpulse;
+    private Animator airplaneAnimation;
 
     private void Awake() {
         this.physics = this.GetComponent<Rigidbody2D>();
         this.initialPosition = this.transform.position;
+        this.airplaneAnimation = this.GetComponent<Animator>();
     }
 
     private void Start() {
         this.director = GameObject.FindObjectOfType<Director>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("Fire1")) {
+        if (Input.GetButtonDown("Fire1")) {
             this.shuoldTriggerImpulse = true;
         }
+        this.airplaneAnimation.SetFloat("VelocityY", this.physics.velocity.y);
     }
 
     private void FixedUpdate() {
