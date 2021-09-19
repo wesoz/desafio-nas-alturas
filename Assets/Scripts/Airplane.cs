@@ -10,6 +10,9 @@ public class Airplane : MonoBehaviour
 
     [SerializeField]
     private UnityEvent onCollide;
+
+    [SerializeField]
+    private UnityEvent onPassObstacle;
     private Rigidbody2D physics;
     private Director director;
     private Vector3 initialPosition;
@@ -50,6 +53,10 @@ public class Airplane : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) {
         this.physics.simulated = false;
         this.onCollide.Invoke();
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        this.onPassObstacle.Invoke();
     }
 
     public void Restart() {

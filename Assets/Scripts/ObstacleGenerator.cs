@@ -12,6 +12,7 @@ public class ObstacleGenerator : MonoBehaviour
     private GameObject obstaclePrefab;
     private DificultLevelControl dificultLevelControl;
     private float timer;
+    private bool isStoped;
     private void Awake()
     {
         this.timer = this.timeToGenerateEasy;
@@ -21,7 +22,11 @@ public class ObstacleGenerator : MonoBehaviour
         this.dificultLevelControl = GameObject.FindObjectOfType<DificultLevelControl>();
     }
 
-    void Update () { 
+    private void Update () { 
+        if (this.isStoped) {
+            return;
+        }
+
         this.timer -= Time.deltaTime;
         if(this.timer < 0)
         {
@@ -30,5 +35,9 @@ public class ObstacleGenerator : MonoBehaviour
                                     this.timeToGenerateHard, 
                                     this.dificultLevelControl.DificultLevel) ;
         }
+    }
+
+    public void Stop() {
+        this.isStoped = true;
     }
 }
