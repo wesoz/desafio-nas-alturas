@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class Score : MonoBehaviour
 {
     [SerializeField]
     private Text scoreText;
+
+    [SerializeField]
+    private UnityEvent onScore;
     public int ScorePoints { get; private set; }
     private AudioSource scoreSound;
 
@@ -17,6 +21,7 @@ public class Score : MonoBehaviour
         this.ScorePoints++;
         this.scoreText.text = this.ScorePoints.ToString();
         this.scoreSound.Play();
+        this.onScore.Invoke();
     }
 
     public void SaveHighscore() {

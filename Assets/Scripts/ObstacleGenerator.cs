@@ -40,4 +40,8 @@ public class ObstacleGenerator : MonoBehaviour
     public void Stop() {
         this.isStoped = true;
     }
+
+    public void Resume() {
+        this.isStoped = false;
+    }
 }

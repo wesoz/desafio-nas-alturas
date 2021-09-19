@@ -19,7 +19,9 @@ public class Obstacle : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        this.Destroy();
+        if (other.CompareTag("ObstacleDestructor")) {
+            this.Destroy();
+        }
     }
 
     public void Destroy() {

@@ -8,7 +8,7 @@ public class Director : MonoBehaviour
     private Score score;
     private GameOverUI gameOverUI;
 
-    private void Start() {
+    protected virtual void Start() {
         this.airplane = GameObject.FindObjectOfType<Airplane>();
         this.score = GameObject.FindObjectOfType<Score>();
         this.gameOverUI = GameObject.FindObjectOfType<GameOverUI>();
@@ -19,7 +19,7 @@ public class Director : MonoBehaviour
         this.gameOverUI.ShowInterface();
     }
 
-    public void RestartGame() {
+    public virtual void RestartGame() {
         this.gameOverUI.HideInterface();
         Time.timeScale = 1;
         this.airplane.Restart();

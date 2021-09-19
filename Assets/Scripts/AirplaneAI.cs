@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class AirplaneAI : MonoBehaviour
 {
+    [SerializeField]
+    private float impulseDelay;
+
     private Airplane airplane;
     void Start()
     {
@@ -13,7 +16,7 @@ public class AirplaneAI : MonoBehaviour
 
     private IEnumerator Impulse() {
         while(true) {
-            yield return new WaitForSeconds(0.6f);
+            yield return new WaitForSeconds(this.impulseDelay);
             this.airplane.DoImpulse();
         }
     }
