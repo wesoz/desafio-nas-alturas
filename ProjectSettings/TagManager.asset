@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - ObstacleDestructor
+  - playerTwoObstacle
+  - playerOneObstacle
+  - bottomAvoidArea
+  - topAvoidArea
+  - Obstacle
   layers:
   - Default
   - TransparentFX

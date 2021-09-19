@@ -56,7 +56,9 @@ public class Airplane : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        this.onPassObstacle.Invoke();
+        if (other.CompareTag("Obstacle")) {
+            this.onPassObstacle.Invoke();
+        }
     }
 
     public void Restart() {
