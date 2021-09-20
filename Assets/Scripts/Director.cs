@@ -8,12 +8,14 @@ public class Director : MonoBehaviour
     private Score score;
     private AirplaneAI airplaneAI;
     private GameOverUI gameOverUI;
+    private DificultLevelControl dificultLevelControl;
 
     protected virtual void Start() {
         this.airplane = GameObject.FindObjectOfType<Airplane>();
         this.score = GameObject.FindObjectOfType<Score>();
         this.gameOverUI = GameObject.FindObjectOfType<GameOverUI>();
         this.airplaneAI = GameObject.FindObjectOfType<AirplaneAI>();
+        this.dificultLevelControl = GameObject.FindObjectOfType<DificultLevelControl>();
     }
     public void GameOver() {
         Time.timeScale = 0;
@@ -28,6 +30,7 @@ public class Director : MonoBehaviour
         this.airplaneAI.Restart();
         this.DestroyObstacles();
         this.score.Reset();
+        this.dificultLevelControl.Restart();
     }
 
     private void DestroyObstacles() {

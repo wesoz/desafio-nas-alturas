@@ -16,4 +16,7 @@ public class DificultLevelControl : MonoBehaviour
         this.DificultLevel = Mathf.Min(1, this.DificultLevel);
     }
 
+    public void Restart() {
+        this.elapsedTime = 0;
+    }
 }
